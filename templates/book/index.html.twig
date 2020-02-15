@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block body %}
+    <h1>Все добавленные книги</h1>
+
+    <a class="col-2 offset-10 btn btn-info mb-3" href="{{ path('book_new') }}">Добавить Книгу</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Имя Автора</th>
+                <th>Год издания</th>
+                <th>Действие</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+            <tr>
+                <td>{{ book.title }}</td>
+                <td>{{ book.authorName }}</td>
+                <td>{{ book.year }}</td>
+                <td>
+                    <a href="{{ path('book_edit', {'id': book.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Нет добавленных книг</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
